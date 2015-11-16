@@ -3,6 +3,12 @@
 // Author: Mahesh Yadav
 
 
+#include <iostream>
+#include <malloc.h>
+#define null 0
+
+using namespace std;
+
 
 struct node{
 
@@ -48,8 +54,8 @@ struct node* insert(struct node *root, int key){
 	}
 
 	return root;
-}
 
+}
 
 // Function for inorder traversal of BST
 
@@ -109,7 +115,7 @@ struct node* get_max_value(struct node* root){
 
 	if(root->right_child == null || root == null){
 		return root;
-	} 
+	}
 
 	return get_max_value(root->right_child);
 }
@@ -117,7 +123,7 @@ struct node* get_max_value(struct node* root){
 // Function to get pointer to a given key value
 
 struct node* get_pointer_to(struct node* root, int key){
-	
+
 	if(root == null){
 		return root;
 	}
@@ -318,8 +324,8 @@ struct node* Kth_smallest_node(struct node *root, int k){
 	if(get_no_of_nodes(root) < k){
 		return null;
 	}
-	
-	/* Base case - as all the nodes in the left subtree are smaller than the root, so if there are k-1 nodes 
+
+	/* Base case - as all the nodes in the left subtree are smaller than the root, so if there are k-1 nodes
 	   in left subtree, then the root will be the kth smallest node
 	*/
 
@@ -355,26 +361,39 @@ bool search_node(struct node *root, int key){
 		return false;
 	}
 
-	if(key < root->data){
+	else{
+
+		if(key < root->data){
 
 		return search_node(root->left_child, key);
-	}
+		}
 
-	else {
+		else if(key > root->data) {
 		return search_node(root->right_child, key);
+		}
+
+		else{
+		return true;
+		}
 	}
 
-	if (root->data == key){
-		return true;
-	}
 }
 
 
+// traverse the tree in postorder and delete every node/*struct node* delete_tree(struct node **root){
+
+void delete_tree(struct node **root){
+
+	if(*root == null){
+		return;
+	}
 
 
-
-
-
+	delete_tree(&((*root)->left_child));
+	delete_tree(&((*root)->right_child));
+	delete(*root);
+	root = null;
+}
 
 
 
