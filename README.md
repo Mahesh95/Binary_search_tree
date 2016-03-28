@@ -1,2 +1,2 @@
 # Binary_search_tree
-implementation of standard BST routines using c++
+implementation of common BST routines using c++
